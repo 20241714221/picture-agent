@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>每日营养分析</title>
+
+  <!-- 页面样式 -->
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+  <div class="dashboard">
+
+    <!-- 顶部标题 -->
+    <header class="header">
+      <h1>每日营养分析</h1>
+      <p>记录饮食，了解营养，科学管理健康</p>
+    </header>
+
+    <!-- 营养数据概览 -->
+    <section class="nutrition-overview">
+      <h2>今日营养摄入</h2>
+
+      <div class="nutrition-cards">
+        <div class="nutrition-card">总热量</div>
+        <div class="nutrition-card">蛋白质</div>
+        <div class="nutrition-card">碳水化合物</div>
+        <div class="nutrition-card">脂肪</div>
+      </div>
+    </section>
+
+    <!-- 营养图表 -->
+    <section class="nutrition-charts">
+      <h2>营养结构分析</h2>
+
+      <div class="chart-container">
+        <div id="nutrition-chart"></div>
+        <div id="calorie-chart"></div>
+      </div>
+    </section>
+
+    <!-- 营养亮点 -->
+    <section class="nutrition-good">
+      <h2>营养亮点</h2>
+      <div id="good-content"></div>
+    </section>
+
+    <!-- 需要改善 -->
+    <section class="nutrition-warning">
+      <h2>需要改善</h2>
+      <div id="warning-content"></div>
+    </section>
+
+    <!-- 饮食建议 -->
+    <section class="nutrition-advice">
+      <h2>饮食建议</h2>
+      <div id="advice-content"></div>
+    </section>
+
+  </div>
+
+  <!-- ECharts 图表库 -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+  <!-- 页面数据和交互 -->
+  <script src="./js/nutrition.js"></script>
+
+</body>
+
+</html>

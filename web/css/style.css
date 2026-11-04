@@ -1,0 +1,240 @@
+
+/* =========================
+   1. 全局样式
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Microsoft YaHei", Arial, sans-serif;
+    background: #f5f8f6;
+    color: #263b32;
+    padding: 30px;
+}
+
+.dashboard {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* =========================
+   2. 顶部标题
+========================= */
+
+.header {
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 30px;
+    color: #203d30;
+    margin-bottom: 10px;
+}
+
+.header p {
+    color: #829188;
+    font-size: 14px;
+}
+
+/* =========================
+   3. 区域标题
+========================= */
+
+section {
+    margin-bottom: 25px;
+}
+
+section h2 {
+    font-size: 20px;
+    margin-bottom: 18px;
+    color: #294638;
+}
+
+/* =========================
+   4. 营养数据卡片
+========================= */
+
+.nutrition-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.nutrition-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 30px 24px;
+    min-height: 130px;
+    box-shadow: 0 3px 12px rgba(30, 70, 50, 0.05);
+    border: 1px solid #edf1ee;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    display: flex;
+    align-items: flex-start;
+}
+
+/* =========================
+   5. 图表区域
+========================= */
+
+.chart-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+#nutrition-chart,
+#calorie-chart {
+    background: #ffffff;
+    border-radius: 16px;
+    height: 350px;
+    padding: 20px;
+    box-shadow: 0 3px 12px rgba(30, 70, 50, 0.05);
+    border: 1px solid #edf1ee;
+}
+
+/* =========================
+   6. 营养亮点
+========================= */
+
+.nutrition-good,
+.nutrition-warning,
+.nutrition-advice {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 3px 12px rgba(30, 70, 50, 0.05);
+    border: 1px solid #edf1ee;
+}
+
+.nutrition-good h2 {
+    color: #269b67;
+}
+
+/* =========================
+   7. 需要改善
+========================= */
+
+.nutrition-warning h2 {
+    color: #dc9a38;
+}
+
+/* =========================
+   8. 饮食建议
+========================= */
+
+.nutrition-advice h2 {
+    color: #478bc9;
+}
+
+/* =========================
+   9. 响应式布局
+========================= */
+
+@media (max-width: 900px) {
+    .nutrition-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .chart-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 15px;
+    }
+
+    .nutrition-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .header h1 {
+        font-size: 24px;
+    }
+}
+
+/* 营养数据卡片 */
+.card-label {
+    color: #829188;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.card-value {
+    font-size: 30px;
+    font-weight: bold;
+    color: #269b67;
+}
+
+.card-value span {
+    font-size: 13px;
+    color: #829188;
+}
+
+/* 分析内容 */
+.analysis-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.good-item {
+    background: #f0f8f3;
+}
+
+.warning-item {
+    background: #fff8ec;
+}
+
+.item-icon {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-weight: bold;
+}
+
+.good-item .item-icon {
+    background: #d8f0e2;
+    color: #269b67;
+}
+
+.warning-item .item-icon {
+    background: #ffedcf;
+    color: #d99a38;
+}
+
+/* 饮食建议 */
+.advice-item {
+    padding: 15px;
+    margin-bottom: 12px;
+    background: #f2f7fc;
+    border-radius: 10px;
+}
+
+.advice-item h3 {
+    font-size: 15px;
+    color: #478bc9;
+    margin-bottom: 8px;
+}
+
+.advice-item p {
+    font-size: 14px;
+    color: #718078;
+    line-height: 1.7;
+}

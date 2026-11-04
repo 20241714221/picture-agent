@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>每日营养分析</title>
+
+  <!-- 页面样式 -->
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+  <div class="dashboard">
+
+    <!-- 顶部标题 -->
+    <header class="header">
+      <h1>每日营养分析</h1>
+      <p>记录饮食，了解营养，科学管理健康</p>
+    </header>
+
+    <!-- 营养数据概览 -->
+    <section class="nutrition-overview">
+      <h2>今日营养摄入</h2>
+
+      <div class="nutrition-cards">
+        <div class="nutrition-card">总热量</div>
+        <div class="nutrition-card">蛋白质</div>
+        <div class="nutrition-card">碳水化合物</div>
+        <div class="nutrition-card">脂肪</div>
+      </div>
+    </section>
+
+    <!-- 营养图表 -->
+    <section class="nutrition-charts">
+      <h2>营养结构分析</h2>
+
+      <div class="chart-container">
+        <div id="nutrition-chart"></div>
+        <div id="calorie-chart"></div>
+      </div>
+    </section>
+
+    <!-- 营养亮点 -->
+    <section class="nutrition-good">
+      <h2>营养亮点</h2>
+      <div id="good-content"></div>
+    </section>
+
+    <!-- 需要改善 -->
+    <section class="nutrition-warning">
+      <h2>需要改善</h2>
+      <div id="warning-content"></div>
+    </section>
+
+    <!-- 饮食建议 -->
+    <section class="nutrition-advice">
+      <h2>饮食建议</h2>
+      <div id="advice-content"></div>
+    </section>
+
+  </div>
+
+  <!-- ECharts 图表库 -->
+  <script src="./assets/echarts.min.js"></script>
+
+  <!-- 页面数据和交互 -->
+  <script>window.__NUTRITION_DATA__ = {"advice":[{"title":"控制主食份量","content":"两个饭团可减少为一个，或将其中一个替换为蔬菜、鸡蛋等，避免单餐碳水过高。"},{"title":"增加优质蛋白","content":"可在早餐中增加鸡蛋、牛奶、豆浆或无糖酸奶，提升蛋白质摄入。"},{"title":"补充蔬菜摄入","content":"增加一份叶类或深色蔬菜，帮助提升膳食纤维和饱腹感。"},{"title":"完整记录三餐","content":"建议补充记录午餐和晚餐，以便更准确评估全天营养摄入情况。"}],"date":"2026-10-13","good":["早餐食材较丰富，包含主食、蔬菜、蛋类和肉类，搭配相对完整","脂肪摄入较低（约12.1g），整体较为清淡","主食中包含紫米杂粮，膳食纤维优于纯白米"],"records":[{"meal_type":"早餐","food_name":"白米饭饭团","weight":110,"calorie":202,"protein":3.5,"fat":0.3,"carbohydrate":44.5},{"meal_type":"早餐","food_name":"紫米杂粮饭团","weight":110,"calorie":215,"protein":4.5,"fat":0.8,"carbohydrate":46},{"meal_type":"早餐","food_name":"清炒四季豆","weight":30,"calorie":25,"protein":1.2,"fat":1,"carbohydrate":3.5},{"meal_type":"早餐","food_name":"玉子烧","weight":40,"calorie":60,"protein":4,"fat":3.5,"carbohydrate":2},{"meal_type":"早餐","food_name":"卤肉燥","weight":40,"calorie":90,"protein":6,"fat":6.5,"carbohydrate":1.5}],"summary":{"calories":592,"protein":19.2,"fat":12.1,"carbohydrate":97.5},"warning":["碳水化合物偏高（约97.5g），两个饭团叠加导致主食比例较大","蛋白质摄入偏低（约19.2g），相对主食占比较小","蔬菜份量较少（仅约30g），膳食纤维不足","该日仅有早餐记录，午餐和晚餐未记录，无法评估全天营养"],"weeklyCalories":[{"day":"周三","calories":0},{"day":"周四","calories":0},{"day":"周五","calories":0},{"day":"周六","calories":0},{"day":"周日","calories":0},{"day":"周一","calories":0},{"day":"周二","calories":592}]};</script>
+  <script src="./js/nutrition.js"></script>
+
+</body>
+
+</html>

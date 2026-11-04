@@ -161,7 +161,7 @@ func (m TUIModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	}
 
 	// 分别更新两个组件，避免命令互相覆盖
-	var cmds []tea.Cmd
+	var cmds []tea.Cmd 
 
 	newViewport, viewportCmd := m.viewport.Update(msg)
 	m.viewport = newViewport
@@ -198,8 +198,7 @@ func (m TUIModel) View() tea.View {
 		hint,
 	)
 
-	return tea.View{
-		Content:  content,
-		AltScreen: true,
-	}
+	v := tea.NewView(content)
+	v.AltScreen = true
+	return v
 }

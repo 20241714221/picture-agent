@@ -1,0 +1,10 @@
+{
+  "servers": [
+    {
+      "name": "nutrition-report",
+      "command": "go",
+      "args": ["run", "./mcp_server"],
+      "enabled": true
+    }
+  ]
+}

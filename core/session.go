@@ -38,7 +38,6 @@ func (s *Session) AddMessage(
 		s.Messages,
 		msg...,
 	)
-
 }
 
 

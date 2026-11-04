@@ -7,13 +7,17 @@ import (
 	"fmt"
 	"os"
 
+	"io"
+	"net/http"
+	"strings"
+
 	"github.com/openai/openai-go/v3"
 )
 
 type FoodItem struct {
 	Name         string  `json:"name"`
 	Weight       float64 `json:"weight"`
-	Calories     float64 `json:"calories"`
+	Calorie     float64 `json:"calorie"`
 	Protein      float64 `json:"protein"`
 	Carbohydrate float64 `json:"carbohydrate"`
 	Fat          float64 `json:"fat"`
@@ -47,14 +51,16 @@ func NewFoodRecognitionTool(visionClient *openai.Client) *ToolDef {
 			fmt.Println("准备分析图片:", imagePath)
 
 			// 读取图片
-			data, err := os.ReadFile(imagePath)
+			// 读取图片：支持本地路径和网络 URL
+			data, err := loadImage(ctx, imagePath)
 			if err != nil {
-				return "", fmt.Errorf("读取图片失败: %v", err)
+				return "", fmt.Errorf("读取图片失败: %w", err)
 			}
-			encoded :=
-				base64.StdEncoding.EncodeToString(data)
-			imageURL :=
-				"data:image/png;base64," + encoded
+			encoded := base64.StdEncoding.EncodeToString(data)
+
+			contentType := http.DetectContentType(data)
+
+			imageURL := "data:" + contentType + ";base64," + encoded
 			resp, err := visionClient.Chat.Completions.New(
 				ctx,
 				openai.ChatCompletionNewParams{
@@ -78,7 +84,7 @@ func NewFoodRecognitionTool(visionClient *openai.Client) *ToolDef {
                          {
                           "name":"食物名称",
                           "weight":100,
-                          "calories":200,
+                          "calorie":200,
                           "protein":10,
                           "carbohydrate":30,
                           "fat":5
@@ -154,4 +160,39 @@ func NewFoodRecognitionTool(visionClient *openai.Client) *ToolDef {
 			return string(jsondata), nil
 		}}
 
+}
+func loadImage(ctx context.Context, imagePath string) ([]byte, error) {
+	// 如果是网络图片
+	if strings.HasPrefix(imagePath, "http://") ||
+		strings.HasPrefix(imagePath, "https://") {
+
+		req, err := http.NewRequestWithContext(
+			ctx,
+			http.MethodGet,
+			imagePath,
+			nil,
+		)
+		if err != nil {
+			return nil, err
+		}
+
+		resp, err := http.DefaultClient.Do(req)
+		if err != nil {
+			return nil, err
+		}
+		defer resp.Body.Close()
+
+		if resp.StatusCode != http.StatusOK {
+			return nil, fmt.Errorf("下载图片失败，HTTP 状态码：%d", resp.StatusCode)
+		}
+
+		data, err := io.ReadAll(resp.Body)
+		if err != nil {
+			return nil, fmt.Errorf("读取网络图片内容失败: %w", err)
+		}
+		return data, nil
+	}
+
+	// 否则按本地文件路径读取
+	return os.ReadFile(imagePath)
 }
