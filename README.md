@@ -122,47 +122,40 @@ Agent 根据用户的实际需求选择合适的工具，并将工具执行结�
 
 ```text
 picture_agent/
-├── tools/                    # Agent 工具定义与实现
-│   ├── tool.go               # ToolDef 基础结构与调用逻辑
-│   ├── current_time.go       # 获取当前日期时间
-│   ├── food_analysis.go      # 食物图片识别（调用视觉模型）
-│   ├── daily_record.go       # 保存饮食记录到数据库
-│   └── nutrition_query.go    # 查询指定日期营养数据（明细+汇总+近7天）
-├── core/                     # 核心数据模型
-│   └── session.go            # Agent 会话消息管理
-├── databases/                # 数据库相关逻辑
-│   └── mysql.go              # MySQL 连接初始化
-├── config/                   # 配置管理
-│   └── mcp.json              # MCP Server 启动配置
-├── mcp/                      # MCP Client 模块
-│   ├── config.go             # 读取解析 mcp.json 配置
-│   ├── client.go             # MCP Client 创建、连接、关闭
-│   ├── manager.go            # 多 MCP Server 生命周期管理
-│   └── discovery.go          # 工具发现与 ToolDef 转换
-├── mcp_server/               # MCP Server（报告生成服务）
-│   ├── main.go               # stdio Server 启动与工具注册
-│   └── report.go             # HTML 报告生成逻辑
-├── web/                      # 营养分析网页模板
-│   ├── index.html            # 报告页面结构
-│   ├── css/style.css         # 页面样式
-│   ├── js/nutrition.js       # 数据渲染与图表逻辑
-│   └── assets/echarts.min.js # 离线 ECharts 图表库
-├── reports/                  # 生成的营养分析报告（运行时产出）
-│   └── nutrition-日期-时间戳/
-│       ├── index.html
-│       ├── css/style.css
-│       ├── js/nutrition.js
-│       └── assets/echarts.min.js
+├── tools/                            # Agent 工具定义与实现
+│   ├── tool.go                       # ToolDef 基础结构与调用逻辑
+│   ├── current_time.go               # 获取当前日期时间
+│   ├── food_analysis.go              # 食物图片识别（调用视觉模型）
+│   ├── daily_record.go               # 保存饮食记录到数据库
+│   └── nutrition_query.go           # 查询指定日期营养数据
+├── core/                             # 核心数据模型
+│   └── session.go                    # Agent 会话消息管理
+├── databases/                        # 数据库相关逻辑
+│   └── mysql.go                      # MySQL 连接初始化
+├── nutrition-report-server/          # MCP Server（报告生成服务）
+│   ├── main.go                       # stdio Server 启动与工具注册
+│   ├── template.go                   # HTML 报告模板生成（CSS/JS 内联）
+│   ├── go.mod                        # 独立模块定义
+│   ├── go.sum
+│   └── nutrition-report-server.exe   # 编译产物
+├── web/                              # 营养分析网页模板
+│   ├── index.html                    # 报告页面结构
+│   ├── css/style.css                 # 页面样式
+│   ├── js/nutrition.js               # 数据渲染与图表逻辑
+│   └── assets/echarts.min.js         # 离线 ECharts 图表库
+├── reports/                          # 生成的营养分析报告（运行时产出）
+│   └── nutrition-2026-11-11-*.html   # 自包含 HTML 报告
 ├── docs/
-│   └── images/               # 项目截图
+│   └── images/                       # 项目截图
 │       ├── agent.png
 │       ├── food-recognition.png
 │       └── nutrition-statistics.png
-├── agent.go                  # Agent 核心逻辑（LLM 调用、工具编排、MCP 工具注册）
-├── main.go                   # 程序入口（初始化客户端、数据库、MCP、TUI）
-├── tui.go                    # Bubble Tea 终端交互界面
+├── agent.go                          # Agent 核心逻辑（LLM 调用、工具编排）
+├── main.go                           # 程序入口（初始化、MCP Client、TUI）
+├── tui.go                            # Bubble Tea 终端交互界面
 ├── go.mod
-└── go.sum
+├── go.sum
+└── README.md
 ```
 
 > 以上目录为结构示意，请根据项目实际代码进行调整。
